@@ -28,6 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Dropbox/Project seriology/JavaPlotTest/JavaPlot.jar"/>
+	<classpathentry kind="lib" path="/odbs/src/main/resources/javaplot/JavaPlot.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
