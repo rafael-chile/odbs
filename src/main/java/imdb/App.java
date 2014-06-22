@@ -49,8 +49,6 @@ import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import imdb.Storage;
 
 public class App {
-	
-
 	final String owlfile = "src/main/resources/imdb/seriology.owl";
 	final String obdafile = "src/main/resources/imdb/seriology.obda";
 
