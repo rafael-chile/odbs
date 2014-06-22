@@ -23,6 +23,7 @@ package imdb;
 import com.panayotis.gnuplot.JavaPlot;
 
 
+
 import imdb.MainForm;
 import imdb.App;
 import it.unibz.krdb.obda.io.ModelIOManager;
@@ -44,6 +45,8 @@ import org.semanticweb.owlapi.model.OWLObject;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
+
+import imdb.Storage;
 
 public class App {
 	
@@ -142,22 +145,22 @@ public class App {
 	/**
 	 * Main client program
 	 */
+
 	public static void main(String[] args) {
     	MainForm mf = new MainForm();
     	mf.setVisible(true);
     	
-		
-			 JavaPlot p = new JavaPlot();
-		     p.addPlot("sin(x)");
-		 	 p.plot();
-		
-   
-        
-        
-
+	/*
+	* JavaPlot p = new JavaPlot();
+	* p.addPlot("sin(x)");
+	* p.plot();
+	*/
+    	//Creando storage
+    	Storage.getInstance().setMsg_prueba("Probando persistencia");
+    	
 		try {
-			App example = new App();
-			example.runQuery();
+			//App example = new App();
+			//example.runQuery();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

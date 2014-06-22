@@ -1,20 +1,85 @@
 package imdb;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
 import javax.swing.border.*;
-/*
- * Created by JFormDesigner on Thu Jun 19 10:45:17 CEST 2014
- */
 
-/**
- * @author Brainrain
- */
+
 public class MainForm extends JFrame {
 	public MainForm() {
 		initComponents();
-		
+		addInitData();		
 	}
+
+	private void addInitData() {
+		tagList.setListData(Storage.getInstance().getTags().toArray());
+		
+		
+		
+		SaveF1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+
+	}
+	
+	private void SaveF1ActionPerformed(ActionEvent e) {		
+		System.out.println("Se agrega plot");
+		System.out.println("Nœmero de plots "+Storage.getInstance().getPlots().size());
+		Storage.getInstance().addPlot(nameF1.getText(), colorF1.getText());
+		
+		//Se limpian los valores
+		nameF1.setText("");
+		colorF1.setText("");
+		
+		System.out.println("Nœmero de plots DESPUES DE AGREGAR "+Storage.getInstance().getPlots().size());
+		
+		comboPlots.removeAllItems();
+		
+		for(Plot p : Storage.getInstance().getPlots()){
+			comboPlots.addItem(p.getNombre());
+		}
+	}
+
+	private void tagButtonActionPerformed(ActionEvent e) {
+		System.out.println("tagButtonActionPerformed");
+	}
+
+	private void addButtonF1ActionPerformed(ActionEvent e) {
+		int tag_add = tagList.getSelectedIndex();
+		int plot = comboPlots.getSelectedIndex();
+		
+		
+		String tag = Storage.getInstance().getTags().get(tag_add);
+		System.out.println("tag_add "+tag_add + " Contenido TAG "+tag );
+		System.out.println("plot "+plot + " plot "+Storage.getInstance().getPlots().get(plot));
+		
+		//Se obtiene el plot		
+		Storage.getInstance().getPlots().get(plot).addTag(tag);
+		
+		//tagList.remove(tag_add); Checar el eliminar
+		
+		listPlottag.setListData(Storage.getInstance().getPlots().get(plot).getTags().toArray());
+
+	}
+
+
+	private void comboPlotsActionPerformed(ActionEvent e) {
+		System.out.println("comboPlotsActionPerformed");
+
+		int plot = comboPlots.getSelectedIndex();
+		System.out.println("plot "+plot );
+		
+		if(plot!=-1)
+			listPlottag.setListData(Storage.getInstance().getPlots().get(plot).getTags().toArray());
+
+	}
+
+	private void comboPlotsItemStateChanged(ItemEvent e) {
+		// TODO add your code here
+	}
+
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -107,6 +172,12 @@ public class MainForm extends JFrame {
 
 							//---- SaveF1 ----
 							SaveF1.setText("Save");
+							SaveF1.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									SaveF1ActionPerformed(e);
+								}
+							});
 
 							GroupLayout plotsH3Layout = new GroupLayout(plotsH3);
 							plotsH3.setLayout(plotsH3Layout);
@@ -142,10 +213,26 @@ public class MainForm extends JFrame {
 							);
 						}
 
+						
+						
 						//======== plotsH4 ========
 						{
 							plotsH4.setToolTipText("ddd");
 							plotsH4.setBorder(new TitledBorder("Tags"));
+
+							//---- comboPlots ----
+							comboPlots.addItemListener(new ItemListener() {
+								@Override
+								public void itemStateChanged(ItemEvent e) {
+									comboPlotsItemStateChanged(e);
+								}
+							});
+							comboPlots.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									comboPlotsActionPerformed(e);
+								}
+							});
 
 							//---- label8 ----
 							label8.setText("Select Plot:");
@@ -165,12 +252,26 @@ public class MainForm extends JFrame {
 
 							//---- label10 ----
 							label10.setText("Tag List:");
-
+							
+							
+							
 							//---- tagButton ----
 							tagButton.setText("Execute");
+							tagButton.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									tagButtonActionPerformed(e);
+								}
+							});
 
 							//---- addButtonF1 ----
 							addButtonF1.setText("<");
+							addButtonF1.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									addButtonF1ActionPerformed(e);
+								}
+							});
 
 							//---- deleteButtonF1 ----
 							deleteButtonF1.setText(">");
