@@ -130,11 +130,11 @@
                  <class>org.jdesktop.layout.GroupLayout</class>
                  <void method="setProperty">
                   <string>$horizontalGroup</string>
-                  <string>par l {seq {space :::p, par l {seq {comp label6:::p::p, space s:::p, comp nameF1:::p:142:p, space u:::p, comp label7:::p::p, space u:::p, comp colorF1::::213:x}, comp SaveF1::t:p:80:p}, space :::p}}</string>
+                  <string>par l {seq {space :::p, par l {seq {comp label6:::p::p, space s:::p, comp nameF1:::p:142:p, space u:::p, comp color:::p::p, space u:::p, comp colorF1::::213:x}, comp SaveF1::t:p:80:p}, space :::p}}</string>
                  </void>
                  <void method="setProperty">
                   <string>$verticalGroup</string>
-                  <string>par l {seq l {par l {par b:l {comp colorF1::b:p::p, comp label7::b:p::p}, par b:l {comp label6::b:p::p, comp nameF1::b:p::p}}, space :::p, comp SaveF1:::p::p, space :::x}}</string>
+                  <string>par l {seq l {par l {par b:l {comp colorF1::b:p::p, comp color::b:p::p}, par b:l {comp label6::b:p::p, comp nameF1::b:p::p}}, space :::p, comp SaveF1:::p::p, space :::x}}</string>
                  </void>
                 </object>
                 <void method="setProperty">
@@ -170,7 +170,7 @@
                    <string>Color:</string>
                   </void>
                   <void property="name">
-                   <string>label7</string>
+                   <string>color</string>
                   </void>
                  </object>
                 </void>
@@ -211,11 +211,11 @@
                  <class>org.jdesktop.layout.GroupLayout</class>
                  <void method="setProperty">
                   <string>$horizontalGroup</string>
-                  <string>par l {seq l {space :::p, par l {seq l {comp label14:::p::p, space u:::p, comp radioButton1:::p::p, space :2:2:p, comp radioButton2:::p::p, space :::p}, seq l {par l {comp label9::l:p::p:1, seq l {comp label8:::p::p, space u:::p, comp comboBox2::::108:x}, comp scrollPane2:::p:171:p:1}, space s:::p, par l {comp okButton6:::p:49:p, comp okButton5::l:p:49:p}, space :p:11:p, par t {seq {comp label10:::p::p, space ::57:x, comp okButton4:::p:95:p, space ::20:x}, seq l {comp scrollPane3:::p:202:p:1, space :::p}}}}}}</string>
+                  <string>par l {seq l {space :::p, par l {seq l {comp label14:::p::p, space u:::p, comp conjunctiveRadio:::p::p, space :2:2:p, comp disjunctiveRadio:::p::p, space :::p}, seq l {par l {comp label9::l:p::p:1, seq l {comp label8:::p::p, space u:::p, comp comboPlots::::108:x}, comp scrollPane2:::p:171:p:1}, space s:::p, par l {comp deleteButtonF1:::p:49:p, comp addButtonF1::l:p:49:p}, space :p:11:p, par t {seq {comp label10:::p::p, space ::57:x, comp tagButton:::p:95:p, space ::20:x}, seq l {comp scrollPane3:::p:202:p:1, space :::p}}}}}}</string>
                  </void>
                  <void method="setProperty">
                   <string>$verticalGroup</string>
-                  <string>par l {seq l {space :::p, par b {comp label8::b:p::p, comp comboBox2::b:p::p, comp label10::b:p::p, comp okButton4::b:p::p}, space :p:11:p, comp label9:::p::p, space :::p, par l {comp scrollPane3::::208:x:1, seq l {comp okButton5:::p::p, space :p:18:p, comp okButton6:::p::p, space :p:92:p}, comp scrollPane2::l::208:x}, space :p::p, par b {comp radioButton1::b:p::p, comp radioButton2::b:p::p, comp label14::b:p::p}}}</string>
+                  <string>par l {seq l {space :::p, par b {comp label8::b:p::p, comp comboPlots::b:p::p, comp label10::b:p::p, comp tagButton::b:p::p}, space :p:11:p, comp label9:::p::p, space :::p, par l {comp scrollPane3::::208:x:1, seq l {comp addButtonF1:::p::p, space :p:18:p, comp deleteButtonF1:::p::p, space :p:92:p}, comp scrollPane2::l::208:x}, space :p::p, par b {comp conjunctiveRadio::b:p::p, comp disjunctiveRadio::b:p::p, comp label14::b:p::p}}}</string>
                  </void>
                 </object>
                 <void method="setProperty">
@@ -235,7 +235,7 @@
                  <object class="com.jformdesigner.model.FormComponent">
                   <string>javax.swing.JComboBox</string>
                   <void property="name">
-                   <string>comboBox2</string>
+                   <string>comboPlots</string>
                   </void>
                  </object>
                 </void>
@@ -264,7 +264,7 @@
                    <object class="com.jformdesigner.model.FormComponent">
                     <string>javax.swing.JList</string>
                     <void property="name">
-                     <string>list2</string>
+                     <string>listPlottag</string>
                     </void>
                    </object>
                   </void>
@@ -295,7 +295,7 @@
                    <object class="com.jformdesigner.model.FormComponent">
                     <string>javax.swing.JList</string>
                     <void property="name">
-                     <string>list3</string>
+                     <string>tagList</string>
                     </void>
                    </object>
                   </void>
@@ -321,7 +321,7 @@
                    <string>Execute</string>
                   </void>
                   <void property="name">
-                   <string>okButton4</string>
+                   <string>tagButton</string>
                   </void>
                  </object>
                 </void>
@@ -333,7 +333,7 @@
                    <string>&lt;</string>
                   </void>
                   <void property="name">
-                   <string>okButton5</string>
+                   <string>addButtonF1</string>
                   </void>
                  </object>
                 </void>
@@ -345,7 +345,7 @@
                    <string>&gt;</string>
                   </void>
                   <void property="name">
-                   <string>okButton6</string>
+                   <string>deleteButtonF1</string>
                   </void>
                  </object>
                 </void>
@@ -369,7 +369,7 @@
                    <string>Conjunctive</string>
                   </void>
                   <void property="name">
-                   <string>radioButton1</string>
+                   <string>conjunctiveRadio</string>
                   </void>
                  </object>
                 </void>
@@ -381,7 +381,7 @@
                    <string>Disjunctive</string>
                   </void>
                   <void property="name">
-                   <string>radioButton2</string>
+                   <string>disjunctiveRadio</string>
                   </void>
                  </object>
                 </void>
@@ -394,11 +394,11 @@
                  <class>org.jdesktop.layout.GroupLayout</class>
                  <void method="setProperty">
                   <string>$horizontalGroup</string>
-                  <string>par l {seq l {space :::p, comp label12:::p::p, space :::p, comp label11:::p::p, space :::p, comp spinner2:::p:63:p, space s:::p, comp label13:::p::p, space u:::p, comp spinner3:::p:63:p, space ::68:x, comp okButton7:::p:106:p, space :::p}}</string>
+                  <string>par l {seq l {space :::p, comp label12:::p::p, space :::p, comp label11:::p::p, space :::p, comp yearFrom:::p:63:p, space s:::p, comp label13:::p::p, space u:::p, comp yearTo:::p:63:p, space ::68:x, comp plotButtonF1:::p:106:p, space :::p}}</string>
                  </void>
                  <void method="setProperty">
                   <string>$verticalGroup</string>
-                  <string>par l {seq l {space :::p, par b {comp label12::b:p::p, comp label11::b:p::p, comp label13::b:p::p, comp okButton7::b:p::p, comp spinner2::b:p::p, comp spinner3::b:p::p}, space :::x}}</string>
+                  <string>par l {seq l {space :::p, par b {comp label12::b:p::p, comp label11::b:p::p, comp label13::b:p::p, comp plotButtonF1::b:p::p, comp yearFrom::b:p::p, comp yearTo::b:p::p}, space :::x}}</string>
                  </void>
                 </object>
                 <void method="setProperty">
@@ -434,7 +434,7 @@
                    <string>PLOT</string>
                   </void>
                   <void property="name">
-                   <string>okButton7</string>
+                   <string>plotButtonF1</string>
                   </void>
                  </object>
                 </void>
@@ -466,7 +466,7 @@
                  <object class="com.jformdesigner.model.FormComponent">
                   <string>javax.swing.JSpinner</string>
                   <void property="name">
-                   <string>spinner2</string>
+                   <string>yearFrom</string>
                   </void>
                  </object>
                 </void>
@@ -474,7 +474,7 @@
                  <object class="com.jformdesigner.model.FormComponent">
                   <string>javax.swing.JSpinner</string>
                   <void property="name">
-                   <string>spinner3</string>
+                   <string>yearTo</string>
                   </void>
                  </object>
                 </void>

@@ -24,32 +24,32 @@ public class MainForm extends JFrame {
 		panel2 = new JPanel();
 		plotsH3 = new JPanel();
 		label6 = new JLabel();
-		label7 = new JLabel();
+		color = new JLabel();
 		nameF1 = new JTextField();
 		colorF1 = new JTextField();
 		SaveF1 = new JButton();
 		plotsH4 = new JPanel();
-		comboBox2 = new JComboBox();
+		comboPlots = new JComboBox();
 		label8 = new JLabel();
 		scrollPane2 = new JScrollPane();
-		list2 = new JList();
+		listPlottag = new JList();
 		label9 = new JLabel();
 		scrollPane3 = new JScrollPane();
-		list3 = new JList();
+		tagList = new JList();
 		label10 = new JLabel();
-		okButton4 = new JButton();
-		okButton5 = new JButton();
-		okButton6 = new JButton();
+		tagButton = new JButton();
+		addButtonF1 = new JButton();
+		deleteButtonF1 = new JButton();
 		label14 = new JLabel();
-		radioButton1 = new JRadioButton();
-		radioButton2 = new JRadioButton();
+		conjunctiveRadio = new JRadioButton();
+		disjunctiveRadio = new JRadioButton();
 		plotsH5 = new JPanel();
 		label11 = new JLabel();
-		okButton7 = new JButton();
+		plotButtonF1 = new JButton();
 		label13 = new JLabel();
 		label12 = new JLabel();
-		spinner2 = new JSpinner();
-		spinner3 = new JSpinner();
+		yearFrom = new JSpinner();
+		yearTo = new JSpinner();
 		panel3 = new JPanel();
 		plotsH7 = new JPanel();
 		scrollPane4 = new JScrollPane();
@@ -102,8 +102,8 @@ public class MainForm extends JFrame {
 							//---- label6 ----
 							label6.setText("Name:");
 
-							//---- label7 ----
-							label7.setText("Color:");
+							//---- color ----
+							color.setText("Color:");
 
 							//---- SaveF1 ----
 							SaveF1.setText("Save");
@@ -120,7 +120,7 @@ public class MainForm extends JFrame {
 												.addGap(18, 18, 18)
 												.addComponent(nameF1, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(label7)
+												.addComponent(color)
 												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 												.addComponent(colorF1, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
 											.addComponent(SaveF1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
@@ -132,7 +132,7 @@ public class MainForm extends JFrame {
 										.addGroup(plotsH3Layout.createParallelGroup()
 											.addGroup(plotsH3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 												.addComponent(colorF1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(label7))
+												.addComponent(color))
 											.addGroup(plotsH3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 												.addComponent(label6)
 												.addComponent(nameF1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
@@ -152,7 +152,7 @@ public class MainForm extends JFrame {
 
 							//======== scrollPane2 ========
 							{
-								scrollPane2.setViewportView(list2);
+								scrollPane2.setViewportView(listPlottag);
 							}
 
 							//---- label9 ----
@@ -160,29 +160,29 @@ public class MainForm extends JFrame {
 
 							//======== scrollPane3 ========
 							{
-								scrollPane3.setViewportView(list3);
+								scrollPane3.setViewportView(tagList);
 							}
 
 							//---- label10 ----
 							label10.setText("Tag List:");
 
-							//---- okButton4 ----
-							okButton4.setText("Execute");
+							//---- tagButton ----
+							tagButton.setText("Execute");
 
-							//---- okButton5 ----
-							okButton5.setText("<");
+							//---- addButtonF1 ----
+							addButtonF1.setText("<");
 
-							//---- okButton6 ----
-							okButton6.setText(">");
+							//---- deleteButtonF1 ----
+							deleteButtonF1.setText(">");
 
 							//---- label14 ----
 							label14.setText("Tag Operator:");
 
-							//---- radioButton1 ----
-							radioButton1.setText("Conjunctive");
+							//---- conjunctiveRadio ----
+							conjunctiveRadio.setText("Conjunctive");
 
-							//---- radioButton2 ----
-							radioButton2.setText("Disjunctive");
+							//---- disjunctiveRadio ----
+							disjunctiveRadio.setText("Disjunctive");
 
 							GroupLayout plotsH4Layout = new GroupLayout(plotsH4);
 							plotsH4.setLayout(plotsH4Layout);
@@ -194,9 +194,9 @@ public class MainForm extends JFrame {
 											.addGroup(plotsH4Layout.createSequentialGroup()
 												.addComponent(label14)
 												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(radioButton1)
+												.addComponent(conjunctiveRadio)
 												.addGap(2, 2, 2)
-												.addComponent(radioButton2)
+												.addComponent(disjunctiveRadio)
 												.addContainerGap())
 											.addGroup(plotsH4Layout.createSequentialGroup()
 												.addGroup(plotsH4Layout.createParallelGroup()
@@ -204,18 +204,18 @@ public class MainForm extends JFrame {
 													.addGroup(plotsH4Layout.createSequentialGroup()
 														.addComponent(label8)
 														.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-														.addComponent(comboBox2, 0, 108, Short.MAX_VALUE))
+														.addComponent(comboPlots, 0, 108, Short.MAX_VALUE))
 													.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE))
 												.addGap(18, 18, 18)
 												.addGroup(plotsH4Layout.createParallelGroup()
-													.addComponent(okButton6, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-													.addComponent(okButton5, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+													.addComponent(deleteButtonF1, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+													.addComponent(addButtonF1, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 												.addGap(11, 11, 11)
 												.addGroup(plotsH4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 													.addGroup(plotsH4Layout.createSequentialGroup()
 														.addComponent(label10)
 														.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-														.addComponent(okButton4, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+														.addComponent(tagButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 														.addContainerGap(20, Short.MAX_VALUE))
 													.addGroup(GroupLayout.Alignment.LEADING, plotsH4Layout.createSequentialGroup()
 														.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
@@ -227,24 +227,24 @@ public class MainForm extends JFrame {
 										.addContainerGap()
 										.addGroup(plotsH4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 											.addComponent(label8)
-											.addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(comboPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addComponent(label10)
-											.addComponent(okButton4))
+											.addComponent(tagButton))
 										.addGap(11, 11, 11)
 										.addComponent(label9)
 										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 										.addGroup(plotsH4Layout.createParallelGroup()
 											.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
 											.addGroup(plotsH4Layout.createSequentialGroup()
-												.addComponent(okButton5)
+												.addComponent(addButtonF1)
 												.addGap(18, 18, 18)
-												.addComponent(okButton6)
+												.addComponent(deleteButtonF1)
 												.addGap(92, 92, 92))
 											.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
 										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 										.addGroup(plotsH4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(radioButton1)
-											.addComponent(radioButton2)
+											.addComponent(conjunctiveRadio)
+											.addComponent(disjunctiveRadio)
 											.addComponent(label14)))
 							);
 						}
@@ -257,8 +257,8 @@ public class MainForm extends JFrame {
 							//---- label11 ----
 							label11.setText("From:");
 
-							//---- okButton7 ----
-							okButton7.setText("PLOT");
+							//---- plotButtonF1 ----
+							plotButtonF1.setText("PLOT");
 
 							//---- label13 ----
 							label13.setText("To:");
@@ -276,13 +276,13 @@ public class MainForm extends JFrame {
 										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 										.addComponent(label11)
 										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(spinner2, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+										.addComponent(yearFrom, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 										.addGap(18, 18, 18)
 										.addComponent(label13)
 										.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(spinner3, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+										.addComponent(yearTo, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-										.addComponent(okButton7, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+										.addComponent(plotButtonF1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 										.addContainerGap())
 							);
 							plotsH5Layout.setVerticalGroup(
@@ -293,9 +293,9 @@ public class MainForm extends JFrame {
 											.addComponent(label12)
 											.addComponent(label11)
 											.addComponent(label13)
-											.addComponent(okButton7)
-											.addComponent(spinner2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(spinner3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addComponent(plotButtonF1)
+											.addComponent(yearFrom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(yearTo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							);
 						}
@@ -546,32 +546,32 @@ public class MainForm extends JFrame {
 	private JPanel panel2;
 	private JPanel plotsH3;
 	private JLabel label6;
-	private JLabel label7;
+	private JLabel color;
 	private JTextField nameF1;
 	private JTextField colorF1;
 	private JButton SaveF1;
 	private JPanel plotsH4;
-	private JComboBox comboBox2;
+	private JComboBox comboPlots;
 	private JLabel label8;
 	private JScrollPane scrollPane2;
-	private JList list2;
+	private JList listPlottag;
 	private JLabel label9;
 	private JScrollPane scrollPane3;
-	private JList list3;
+	private JList tagList;
 	private JLabel label10;
-	private JButton okButton4;
-	private JButton okButton5;
-	private JButton okButton6;
+	private JButton tagButton;
+	private JButton addButtonF1;
+	private JButton deleteButtonF1;
 	private JLabel label14;
-	private JRadioButton radioButton1;
-	private JRadioButton radioButton2;
+	private JRadioButton conjunctiveRadio;
+	private JRadioButton disjunctiveRadio;
 	private JPanel plotsH5;
 	private JLabel label11;
-	private JButton okButton7;
+	private JButton plotButtonF1;
 	private JLabel label13;
 	private JLabel label12;
-	private JSpinner spinner2;
-	private JSpinner spinner3;
+	private JSpinner yearFrom;
+	private JSpinner yearTo;
 	private JPanel panel3;
 	private JPanel plotsH7;
 	private JScrollPane scrollPane4;
