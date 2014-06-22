@@ -1,0 +1,184 @@
+[PrefixDeclaration]
+:		http://www.seriology.org/seriology#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xsd:		http://www.w3.org/2001/XMLSchema#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[SourceDeclaration]
+sourceUri	postgresDB
+connectionUrl	jdbc:postgresql://localhost:5433/imdb
+username	postgres
+password	admin123
+driverClass	org.postgresql.Driver
+
+[MappingDeclaration] @collection [[
+mappingId	Company + Company_Name
+target		:company-{cn.id} a :Company ; :Company_Name {cn.name} . 
+source		SELECT cn.id, cn.name
+			FROM company_name cn
+
+mappingId	Tag (from keywords) + Tag_Caption
+target		:tag-keyword-{k.id} a :Tag ; :Tag_Caption {k.keyword} . 
+source		SELECT k.id, k.keyword
+			FROM keyword k
+
+mappingId	Genre (from movie_info) + Tag_Caption
+target		:tag-genres-{mi.info} a :Genre ; :Tag_Caption {mi.info} . 
+source		SELECT DISTINCT mi.info
+			FROM movie_info mi
+			WHERE info_type_id = 3
+
+mappingId	produces (for Series)
+target		:company-{mc.company_id} :produces :series-{mc.movie_id} . 
+source		SELECT DISTINCT mc.movie_id, mc.company_id
+			FROM movie_companies mc, title t
+			WHERE mc.movie_id = t.id AND company_type_id = 2 AND t.kind_id = 2
+
+mappingId	produces (for Episode)
+target		:company-{mc.company_id} :produces :episode-{title.id} . 
+source		SELECT DISTINCT mc.movie_id, mc.company_id
+			FROM movie_companies mc, title t
+			WHERE mc.movie_id = t.id AND company_type_id = 2 AND t.kind_id = 7
+
+mappingId	produces (for Season)
+target		:company-{mc.company_id} :produces :series-{t.episode_of_id}-season-{t.season_nr} . 
+source		SELECT DISTINCT mc.company_id, t.episode_of_id, t.season_nr
+			FROM movie_companies mc, title t
+			WHERE mc.movie_id = t.id AND company_type_id = 2 AND t.kind_id = 7 AND t.season_nr IS NOT NULL
+
+mappingId	taggedAs (for Series and keywords)
+target		:series-{mk.movie_id} :taggedAs :tag-keyword-{mk.keyword_id} . 
+source		SELECT DISTINCT mk.movie_id, mk.keyword_id
+			FROM movie_keyword mk, title t
+			WHERE mk.movie_id = t.id AND t.kind_id = 2
+
+mappingId	taggedAs (for Episode and keywords)
+target		:episode-{mk.movie_id} :taggedAs :tag-keyword-{mk.keyword_id} . 
+source		SELECT DISTINCT mk.movie_id, mk.keyword_id
+			FROM movie_keyword mk, title t
+			WHERE mk.movie_id = t.id AND t.kind_id = 7
+
+mappingId	taggedAs (for Season and keywords)
+target		:series-{t.episode_of_id}-season-{t.season_nr} :taggedAs :tag-keyword-{mk.keyword_id} . 
+source		SELECT DISTINCT t.episode_of_id, t.season_nr, mk.keyword_id
+			FROM movie_keyword mk, title t
+			WHERE mk.movie_id = t.id AND t.kind_id = 7 AND t.season_nr IS NOT NULL
+
+mappingId	taggedAs (for Series and genres)
+target		:series-{mi.movie_id} :taggedAs :tag-genres-{mi.info} . 
+source		SELECT DISTINCT mi.info, mi.movie_id
+			FROM movie_info mi, title t
+			WHERE mi.movie_id = t.id AND t.kind_id = 2 AND mi.info_type_id = 3
+
+mappingId	taggedAs (for Episode and genres)
+target		:episode-{mi.movie_id} :taggedAs :tag-genres-{mi.info} . 
+source		SELECT DISTINCT mi.info, mi.movie_id
+			FROM movie_info mi, title t
+			WHERE mi.movie_id = t.id AND t.kind_id = 7 AND mi.info_type_id = 3
+
+mappingId	taggedAs (for Season and genres)
+target		:series-{t.episode_of_id}-season-{t.season_nr} :taggedAs :tag-genres-{mi.info} . 
+source		SELECT DISTINCT t.episode_of_id, t.season_nr, mi.info
+			FROM movie_info mi, title t
+			WHERE mi.movie_id = t.id AND t.kind_id = 7 AND mi.info_type_id = 3 AND t.season_nr IS NOT NULL
+
+mappingId	Series + Series_Title + Production_Year (for Series)
+target		:series-{id} a :Series ; :Series_Title {title} ; :Production_Year {production_year} . 
+source		SELECT id, title, production_year
+			FROM title 
+			WHERE kind_id = 7
+
+mappingId	Season + Season_Number + Production_Year (for Season)
+target		:series-{episode_of_id}-season-{season_nr} a :Season ; :Season_Number {season_nr} ; :Production_Year {production_year} . 
+source		SELECT DISTINCT episode_of_id, season_nr, production_year
+			FROM title
+			WHERE kind_id=7 AND season_nr IS NOT NULL
+
+mappingId	Episode + Episode_Number + Episode_Title + Production_Year (for Episode)
+target		:episode-{id} a :Episode ; :Episode_Title {title} ; :Episode_Number {episode_nr} ; :Production_Year {production_year} . 
+source		SELECT id, episode_nr, title, production_year
+			FROM title
+			WHERE kind_id=7
+
+mappingId	hasEpisode
+target		:series-{episode_of_id}-season-{season_nr} :hasEpisode :episode-{id} . 
+source		SELECT id, episode_of_id, season_nr
+			FROM title
+			WHERE kind_id=7 AND season_nr IS NOT NULL
+
+mappingId	containsEpisode
+target		:series-{ep.episode_of_id} :containsEpisode :episode-{ep.id} . 
+source		SELECT ep.id, ep.episode_of_id
+			FROM title ep
+			WHERE ep.kind_id=7
+
+mappingId	isSpinoffOf
+target		:series-{link.movie_id} :isSpinoffOf :series-{link.linked_movie_id} . 
+source		SELECT link.movie_id, link.linked_movie_id
+			FROM movie_link link, title t1, title t2
+			WHERE link.link_type_id=12 AND link.movie_id = t1.id AND link.linked_movie_id = t2.id AND t1.kind_id = 2 AND t2.kind_id = 2
+
+mappingId	Person + Person_Name
+target		:person-{name.id} a :Person ; :Person_Name {name.name} . 
+source		select name.id , name.name
+			from name name
+
+mappingId	Person_OtherName
+target		:person-{n.person_id} :Person_OtherName {n.name} . 
+source		select distinct n.person_id , n.name
+			from aka_name n
+
+mappingId	Character + Character_Name
+target		:character-{c.id} a :Character ; :Character_Name {c.name} . 
+source		select c.id, c.name
+			from char_name c
+
+mappingId	Actor + Job_Role (for actors)
+target		:job-{ci.id} a :Actor ; :Job_Role {rt.role} . 
+source		SELECT ci.id , rt.role
+			FROM cast_info ci, role_type rt
+			WHERE (ci.role_id = 1 OR ci.role_id = 2) AND ci.role_id = rt.id
+
+mappingId	workedAs
+target		:person-{ci.person_id} :workedAs :job-{ci.id} . 
+source		Select ci.id, ci.person_id
+			From cast_info ci
+
+mappingId	inProduction (for Series)
+target		:job-{ci.id} :inProduction :series-{ci.movie_id} . 
+source		Select ci.id , ci.movie_id
+			FROM cast_info ci , title t
+			WHERE ci.movie_id = t.id AND t.kind_id = 2
+
+mappingId	inProduction (for Episode)
+target		:job-{ci.id} :inProduction :episode-{ci.movie_id} . 
+source		Select ci.id , ci.movie_id
+			FROM cast_info ci , title t
+			WHERE ci.movie_id = t.id AND t.kind_id = 7
+
+mappingId	inProduction (for Season)
+target		:job-{ci.id} :inProduction :series-{t.episode_of_id}-season-{t.season_nr} . 
+source		SELECT DISTINCT ci.id, t.episode_of_id , t.season_nr
+			FROM cast_info ci , title t
+			WHERE ci.movie_id = t.id  AND  t.kind_id = 7 AND t.season_nr IS NOT NULL
+
+mappingId	appearsIn (for Series)
+target		:character-{c.person_role_id} :appearsIn :series-{c.movie_id} . 
+source		SELECT DISTINCT c.person_role_id , c.movie_id
+			FROM cast_info c, title t
+			WHERE c.movie_id = t.id AND t.kind_id= 2 AND (c.role_id = 1 OR c.role_id = 2) AND c.person_role_id IS NOT NULL
+
+mappingId	appearsIn (for Episode)
+target		:character-{c.person_role_id} :appearsIn :episode-{c.movie_id} . 
+source		SELECT DISTINCT c.person_role_id , c.movie_id
+			FROM cast_info c, title t
+			WHERE c.movie_id = t.id AND t.kind_id= 7 AND (c.role_id = 1 OR c.role_id = 2) AND c.person_role_id IS NOT NULL
+
+mappingId	appearsIn (for Season)
+target		:character-{c.person_role_id} :appearsIn :series-{t.episode_of_id}-season-{t.season_nr} . 
+source		SELECT DISTINCT c.person_role_id , t.episode_of_id, t.season_nr
+			FROM cast_info c, title t
+			WHERE c.movie_id = t.id AND t.kind_id= 7 AND (c.role_id = 1 OR c.role_id = 2) AND t.season_nr IS NOT NULL AND c.person_role_id IS NOT NULL
+]]
+
