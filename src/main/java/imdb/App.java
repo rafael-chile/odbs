@@ -89,7 +89,7 @@ public class App {
 		QuestOWLStatement st = conn.createStatement();
 
 		/*
-		 * Get the book information that is stored in the database
+		 * Get the episode information that is stored in the database
 		 */
 		String sparqlQuery = 
 				"PREFIX : <http://www.seriology.org/seriology#> \n" +
