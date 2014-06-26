@@ -13,15 +13,16 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import java.util.*;
-import imdb.ColorComboBoxEditor1;
 
+import imdb.ColorComboBoxEditor1;
 
 public class MainForm extends JFrame {
 	private Controller ctrl;
 	
 	public MainForm() {
 		initComponents();
-		addInitData();		
+		addInitData();	
+		colorComboBoxEditor();
 		ctrl = new Controller();
 		addButtonF1.addActionListener(new ActionListener() {
 			@Override
@@ -40,24 +41,28 @@ public class MainForm extends JFrame {
 		});
 	}
 	
-	public class ColorComboBoxEditor {		
-		    Color colors[] = { Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK};
-		    //JFrame frame = new JFrame("Editable JComboBox");
-		    //.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-		    
-		    //final JComboBox comboBox = new JComboBox(colors);
-		   // comboBox.setEditable(true);
-		    //comboBox.setEditor(new ColorComboBoxEditor1(Color.RED));
-		    //frame.add(comboBox, BorderLayout.NORTH);
-
-		   // frame.setSize(300, 200);
-		   // frame.setVisible(true);
-		  
-		}
-	
+	private void colorComboBoxEditor() {
+		   comboBox1.setEditable(true);
+		   comboBox1.setEditor(new ColorComboBoxEditor1(Color.RED));
+		
+	}
 
 	private void addInitData() {
 		tagList.setListData(Storage.getInstance().getTags().toArray());
+		
+		//---- comboPlots ----
+		comboPlots.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				comboPlotsItemStateChanged(e);
+			}
+		});
+		comboPlots.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comboPlotsActionPerformed(e);
+			}
+		});
 		
 		
 		
@@ -74,11 +79,14 @@ public class MainForm extends JFrame {
 	private void SaveF1ActionPerformed(ActionEvent e) {		
 		System.out.println("Se agrega plot");
 		System.out.println("Nœmero de plots "+Storage.getInstance().getPlots().size());
-		Storage.getInstance().addPlot(nameF1.getText(), colorF1.getText());
+		
+		
+		Storage.getInstance().addPlot(nameF1.getText(), comboBox1.getForeground().toString());
+
+		System.out.println(comboBox1.getForeground().toString());
 		
 		//Se limpian los valores
 		nameF1.setText("");
-		colorF1.setText("");
 		
 		System.out.println("Nœmero de plots DESPUES DE AGREGAR "+Storage.getInstance().getPlots().size());
 		
@@ -113,7 +121,7 @@ public class MainForm extends JFrame {
 
 
 	private void comboPlotsActionPerformed(ActionEvent e) {
-		System.out.println("comboPlotsActionPerformed");
+		System.out.println("ActionPerformed");
 
 		int plot = comboPlots.getSelectedIndex();
 		System.out.println("plot "+plot );
@@ -129,6 +137,7 @@ public class MainForm extends JFrame {
 
 
 	private void initComponents() {
+		Color colors[] = { Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK};
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		dialogPane = new JPanel();
 		contentPanel = new JPanel();
@@ -138,8 +147,8 @@ public class MainForm extends JFrame {
 		label6 = new JLabel();
 		color = new JLabel();
 		nameF1 = new JTextField();
-		colorF1 = new JTextField();
 		SaveF1 = new JButton();
+		comboBox1 = new JComboBox(colors);
 		plotsH4 = new JPanel();
 		comboPlots = new JComboBox();
 		label8 = new JLabel();
@@ -208,7 +217,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH3 ========
 						{
-							//plotsH3.setToolTipText("ddd");
+							plotsH3.setToolTipText("ddd");
 							plotsH3.setBorder(new TitledBorder("Create Plot"));
 
 							//---- label6 ----
@@ -224,18 +233,17 @@ public class MainForm extends JFrame {
 							plotsH3.setLayout(plotsH3Layout);
 							plotsH3Layout.setHorizontalGroup(
 								plotsH3Layout.createParallelGroup()
-									.addGroup(plotsH3Layout.createSequentialGroup()
+									.addGroup(GroupLayout.Alignment.TRAILING, plotsH3Layout.createSequentialGroup()
 										.addContainerGap()
-										.addGroup(plotsH3Layout.createParallelGroup()
-											.addGroup(plotsH3Layout.createSequentialGroup()
-												.addComponent(label6)
-												.addGap(18, 18, 18)
-												.addComponent(nameF1, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(color)
-												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(colorF1, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
-											.addComponent(SaveF1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+										.addComponent(label6)
+										.addGap(18, 18, 18)
+										.addComponent(nameF1, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+										.addGap(43, 43, 43)
+										.addComponent(color)
+										.addGap(33, 33, 33)
+										.addGroup(plotsH3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+											.addComponent(comboBox1, GroupLayout.Alignment.LEADING, 0, 157, Short.MAX_VALUE)
+											.addComponent(SaveF1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 										.addContainerGap())
 							);
 							plotsH3Layout.setVerticalGroup(
@@ -243,37 +251,21 @@ public class MainForm extends JFrame {
 									.addGroup(plotsH3Layout.createSequentialGroup()
 										.addGroup(plotsH3Layout.createParallelGroup()
 											.addGroup(plotsH3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-												.addComponent(colorF1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(color))
-											.addGroup(plotsH3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 												.addComponent(label6)
-												.addComponent(nameF1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(SaveF1)
-										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addComponent(nameF1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(color))
+											.addGroup(plotsH3Layout.createSequentialGroup()
+												.addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(SaveF1)))
+										.addContainerGap())
 							);
 						}
 
-						
-						
 						//======== plotsH4 ========
 						{
-							//plotsH4.setToolTipText("ddd");
+							plotsH4.setToolTipText("ddd");
 							plotsH4.setBorder(new TitledBorder("Tags"));
-
-							//---- comboPlots ----
-							comboPlots.addItemListener(new ItemListener() {
-								@Override
-								public void itemStateChanged(ItemEvent e) {
-									comboPlotsItemStateChanged(e);
-								}
-							});
-							comboPlots.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									comboPlotsActionPerformed(e);
-								}
-							});
 
 							//---- label8 ----
 							label8.setText("Select Plot:");
@@ -293,9 +285,7 @@ public class MainForm extends JFrame {
 
 							//---- label10 ----
 							label10.setText("Tag List:");
-							
-							
-							
+
 							//---- tagButton ----
 							tagButton.setText("Execute");
 
@@ -326,30 +316,27 @@ public class MainForm extends JFrame {
 												.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 												.addComponent(conjunctiveRadio)
 												.addGap(2, 2, 2)
-												.addComponent(disjunctiveRadio)
-												.addContainerGap())
+												.addComponent(disjunctiveRadio))
 											.addGroup(plotsH4Layout.createSequentialGroup()
 												.addGroup(plotsH4Layout.createParallelGroup()
 													.addComponent(label9)
 													.addGroup(plotsH4Layout.createSequentialGroup()
 														.addComponent(label8)
 														.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-														.addComponent(comboPlots, 0, 108, Short.MAX_VALUE))
+														.addComponent(comboPlots, 0, 109, Short.MAX_VALUE))
 													.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE))
 												.addGap(18, 18, 18)
 												.addGroup(plotsH4Layout.createParallelGroup()
 													.addComponent(deleteButtonF1, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 													.addComponent(addButtonF1, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 												.addGap(11, 11, 11)
-												.addGroup(plotsH4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+												.addGroup(plotsH4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
 													.addGroup(plotsH4Layout.createSequentialGroup()
 														.addComponent(label10)
-														.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-														.addComponent(tagButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-														.addContainerGap(20, Short.MAX_VALUE))
-													.addGroup(GroupLayout.Alignment.LEADING, plotsH4Layout.createSequentialGroup()
-														.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-														.addContainerGap())))))
+														.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(tagButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
+													.addComponent(scrollPane3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE))))
+										.addContainerGap())
 							);
 							plotsH4Layout.setVerticalGroup(
 								plotsH4Layout.createParallelGroup()
@@ -358,8 +345,8 @@ public class MainForm extends JFrame {
 										.addGroup(plotsH4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 											.addComponent(label8)
 											.addComponent(comboPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(label10)
-											.addComponent(tagButton))
+											.addComponent(tagButton)
+											.addComponent(label10))
 										.addGap(11, 11, 11)
 										.addComponent(label9)
 										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -381,7 +368,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH5 ========
 						{
-							//plotsH5.setToolTipText("ddd");
+							plotsH5.setToolTipText("ddd");
 							plotsH5.setBorder(new TitledBorder("Query"));
 
 							//---- label11 ----
@@ -434,15 +421,15 @@ public class MainForm extends JFrame {
 						panel2.setLayout(panel2Layout);
 						panel2Layout.setHorizontalGroup(
 							panel2Layout.createParallelGroup()
-								.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
-									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-										.addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
+								.addGroup(panel2Layout.createSequentialGroup()
+									.addGroup(panel2Layout.createParallelGroup()
+										.addGroup(panel2Layout.createSequentialGroup()
 											.addContainerGap()
 											.addComponent(plotsH4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-										.addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
+										.addGroup(panel2Layout.createSequentialGroup()
 											.addGap(13, 13, 13)
 											.addComponent(plotsH5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-										.addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
+										.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
 											.addContainerGap()
 											.addComponent(plotsH3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 									.addContainerGap())
@@ -467,7 +454,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH7 ========
 						{
-							//plotsH7.setToolTipText("ddd");
+							plotsH7.setToolTipText("ddd");
 							plotsH7.setBorder(new TitledBorder("Series"));
 
 							//======== scrollPane4 ========
@@ -544,7 +531,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH8 ========
 						{
-							//plotsH8.setToolTipText("ddd");
+							plotsH8.setToolTipText("ddd");
 							plotsH8.setBorder(new TitledBorder("Query"));
 
 							//---- okButton12 ----
@@ -678,8 +665,8 @@ public class MainForm extends JFrame {
 	private JLabel label6;
 	private JLabel color;
 	private JTextField nameF1;
-	private JTextField colorF1;
 	private JButton SaveF1;
+	private JComboBox comboBox1;
 	private JPanel plotsH4;
 	private JComboBox comboPlots;
 	private JLabel label8;

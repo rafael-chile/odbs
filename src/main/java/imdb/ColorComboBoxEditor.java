@@ -78,3 +78,5 @@ class ColorComboBoxEditor1 implements ComboBoxEditor {
     }
   }
 }
+
+public class ColorComboBoxEditor {}

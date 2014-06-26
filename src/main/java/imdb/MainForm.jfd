@@ -113,7 +113,7 @@
                <class>org.jdesktop.layout.GroupLayout</class>
                <void method="setProperty">
                 <string>$horizontalGroup</string>
-                <string>par l {seq t {par t {seq l {space :::p, comp plotsH4:::::x:1}, seq l {space :p:13:p, comp plotsH5:::::x}, seq l {space :::p, comp plotsH3:::::x:1}}, space :::p}}</string>
+                <string>par l {seq {par l {seq l {space :::p, comp plotsH4:::::x:1}, seq l {space :p:13:p, comp plotsH5:::::x}, seq t {space :::p, comp plotsH3:::::x:1}}, space :::p}}</string>
                </void>
                <void method="setProperty">
                 <string>$verticalGroup</string>
@@ -130,11 +130,11 @@
                  <class>org.jdesktop.layout.GroupLayout</class>
                  <void method="setProperty">
                   <string>$horizontalGroup</string>
-                  <string>par l {seq {space :::p, par l {seq {comp label6:::p::p, space s:::p, comp nameF1:::p:142:p, space u:::p, comp color:::p::p, space u:::p, comp colorF1::::213:x}, comp SaveF1::t:p:80:p}, space :::p}}</string>
+                  <string>par l {seq t {space :::p, comp label6:::p::p, space s:::p, comp nameF1:::p:142:p, space :p:43:p, comp color:::p::p, space :p:33:p, par t {comp comboBox1::l::157:x, comp SaveF1::t:p:80:p}, space :::p}}</string>
                  </void>
                  <void method="setProperty">
                   <string>$verticalGroup</string>
-                  <string>par l {seq l {par l {par b:l {comp colorF1::b:p::p, comp color::b:p::p}, par b:l {comp label6::b:p::p, comp nameF1::b:p::p}}, space :::p, comp SaveF1:::p::p, space :::x}}</string>
+                  <string>par l {seq {par l {par b {comp label6::b:p::p, comp nameF1::b:p::p, comp color::b:p::p}, seq l {comp comboBox1:::p::p, space :::x, comp SaveF1:::p::p}}, space :::p}}</string>
                  </void>
                 </object>
                 <void method="setProperty">
@@ -184,14 +184,6 @@
                 </void>
                 <void method="add">
                  <object class="com.jformdesigner.model.FormComponent">
-                  <string>javax.swing.JTextField</string>
-                  <void property="name">
-                   <string>colorF1</string>
-                  </void>
-                 </object>
-                </void>
-                <void method="add">
-                 <object class="com.jformdesigner.model.FormComponent">
                   <string>javax.swing.JButton</string>
                   <void method="setProperty">
                    <string>text</string>
@@ -199,6 +191,14 @@
                   </void>
                   <void property="name">
                    <string>SaveF1</string>
+                  </void>
+                 </object>
+                </void>
+                <void method="add">
+                 <object class="com.jformdesigner.model.FormComponent">
+                  <string>javax.swing.JComboBox</string>
+                  <void property="name">
+                   <string>comboBox1</string>
                   </void>
                  </object>
                 </void>
@@ -211,11 +211,11 @@
                  <class>org.jdesktop.layout.GroupLayout</class>
                  <void method="setProperty">
                   <string>$horizontalGroup</string>
-                  <string>par l {seq l {space :::p, par l {seq l {comp label14:::p::p, space u:::p, comp conjunctiveRadio:::p::p, space :2:2:p, comp disjunctiveRadio:::p::p, space :::p}, seq l {par l {comp label9::l:p::p:1, seq l {comp label8:::p::p, space u:::p, comp comboPlots::::108:x}, comp scrollPane2:::p:171:p:1}, space s:::p, par l {comp deleteButtonF1:::p:49:p, comp addButtonF1::l:p:49:p}, space :p:11:p, par t {seq {comp label10:::p::p, space ::57:x, comp tagButton:::p:95:p, space ::20:x}, seq l {comp scrollPane3:::p:202:p:1, space :::p}}}}}}</string>
+                  <string>par l {seq l {space :::p, par l {seq l {comp label14:::p::p, space u:::p, comp conjunctiveRadio:::p::p, space :2:2:p, comp disjunctiveRadio:::p::p}, seq l {par l {comp label9::l:p::p:1, seq l {comp label8:::p::p, space u:::p, comp comboPlots::::109:x}, comp scrollPane2:::p:171:p:1}, space s:::p, par l {comp deleteButtonF1:::p:49:p, comp addButtonF1::l:p:49:p}, space :p:11:p, par t:::p {seq t:::1 {comp label10:::p::p, space :::x, comp tagButton:::p:95:p}, comp scrollPane3::l:p:202:p:1}}}, space :::p}}</string>
                  </void>
                  <void method="setProperty">
                   <string>$verticalGroup</string>
-                  <string>par l {seq l {space :::p, par b {comp label8::b:p::p, comp comboPlots::b:p::p, comp label10::b:p::p, comp tagButton::b:p::p}, space :p:11:p, comp label9:::p::p, space :::p, par l {comp scrollPane3::::208:x:1, seq l {comp addButtonF1:::p::p, space :p:18:p, comp deleteButtonF1:::p::p, space :p:92:p}, comp scrollPane2::l::208:x}, space :p::p, par b {comp conjunctiveRadio::b:p::p, comp disjunctiveRadio::b:p::p, comp label14::b:p::p}}}</string>
+                  <string>par l {seq l {space :::p, par b {comp label8::b:p::p, comp comboPlots::b:p::p, comp tagButton::b:p::p, comp label10::b:p::p}, space :p:11:p, comp label9:::p::p, space :::p, par l {comp scrollPane3::::208:x:1, seq l {comp addButtonF1:::p::p, space :p:18:p, comp deleteButtonF1:::p::p, space :p:92:p}, comp scrollPane2::l::208:x}, space :p::p, par b {comp conjunctiveRadio::b:p::p, comp disjunctiveRadio::b:p::p, comp label14::b:p::p}}}</string>
                  </void>
                 </object>
                 <void method="setProperty">
