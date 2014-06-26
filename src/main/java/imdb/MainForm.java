@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import java.util.*;
+import imdb.ColorComboBoxEditor1;
 
 
 public class MainForm extends JFrame {
@@ -38,6 +39,22 @@ public class MainForm extends JFrame {
 			}
 		});
 	}
+	
+	public class ColorComboBoxEditor {		
+		    Color colors[] = { Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK};
+		    //JFrame frame = new JFrame("Editable JComboBox");
+		    //.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+		    
+		    //final JComboBox comboBox = new JComboBox(colors);
+		   // comboBox.setEditable(true);
+		    //comboBox.setEditor(new ColorComboBoxEditor1(Color.RED));
+		    //frame.add(comboBox, BorderLayout.NORTH);
+
+		   // frame.setSize(300, 200);
+		   // frame.setVisible(true);
+		  
+		}
+	
 
 	private void addInitData() {
 		tagList.setListData(Storage.getInstance().getTags().toArray());
