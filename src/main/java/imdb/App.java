@@ -157,8 +157,8 @@ public class App {
     	Storage.getInstance().setMsg_prueba("Probando persistencia");
     	
 		try {
-			//App example = new App();
-			//example.runQuery();
+			App example = new App();
+			example.runQuery();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
