@@ -34,3 +34,13 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+*.class
+*.class
+target/classes/META-INF/maven/it.unibz.inf.ontop/ontop-examples/pom.properties
+target/classes/imdb/MainForm$1.class
+target/classes/imdb/MainForm$2.class
+target/classes/imdb/MainForm$3.class
+*.class
+target/classes/imdb/MainForm$5.class
+target/classes/META-INF/maven/it.unibz.inf.ontop/ontop-examples/pom.properties

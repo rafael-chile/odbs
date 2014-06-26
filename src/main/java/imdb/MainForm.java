@@ -1,14 +1,35 @@
 package imdb;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
+import java.util.*;
+
 
 public class MainForm extends JFrame {
+	private Controller ctrl;
+	
 	public MainForm() {
 		initComponents();
 		addInitData();		
+		ctrl = new Controller();
+		tagButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				tagList.setModel(ctrl.getListTags());
+			}
+		});
 	}
 
 	private void addInitData() {
@@ -257,12 +278,12 @@ public class MainForm extends JFrame {
 							
 							//---- tagButton ----
 							tagButton.setText("Execute");
-							tagButton.addActionListener(new ActionListener() {
+							/*tagButton.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									tagButtonActionPerformed(e);
 								}
-							});
+							});*/
 
 							//---- addButtonF1 ----
 							addButtonF1.setText("<");
