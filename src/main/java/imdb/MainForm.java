@@ -22,6 +22,13 @@ public class MainForm extends JFrame {
 		initComponents();
 		addInitData();		
 		ctrl = new Controller();
+		addButtonF1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addButtonF1ActionPerformed(e);
+			}
+		});
+			
 		tagButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -38,7 +45,9 @@ public class MainForm extends JFrame {
 		
 		
 		SaveF1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				SaveF1ActionPerformed(e);
 			}
 		});
 		
@@ -182,7 +191,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH3 ========
 						{
-							plotsH3.setToolTipText("ddd");
+							//plotsH3.setToolTipText("ddd");
 							plotsH3.setBorder(new TitledBorder("Create Plot"));
 
 							//---- label6 ----
@@ -193,12 +202,6 @@ public class MainForm extends JFrame {
 
 							//---- SaveF1 ----
 							SaveF1.setText("Save");
-							SaveF1.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									SaveF1ActionPerformed(e);
-								}
-							});
 
 							GroupLayout plotsH3Layout = new GroupLayout(plotsH3);
 							plotsH3.setLayout(plotsH3Layout);
@@ -238,7 +241,7 @@ public class MainForm extends JFrame {
 						
 						//======== plotsH4 ========
 						{
-							plotsH4.setToolTipText("ddd");
+							//plotsH4.setToolTipText("ddd");
 							plotsH4.setBorder(new TitledBorder("Tags"));
 
 							//---- comboPlots ----
@@ -278,21 +281,9 @@ public class MainForm extends JFrame {
 							
 							//---- tagButton ----
 							tagButton.setText("Execute");
-							/*tagButton.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									tagButtonActionPerformed(e);
-								}
-							});*/
 
 							//---- addButtonF1 ----
 							addButtonF1.setText("<");
-							addButtonF1.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									addButtonF1ActionPerformed(e);
-								}
-							});
 
 							//---- deleteButtonF1 ----
 							deleteButtonF1.setText(">");
@@ -373,7 +364,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH5 ========
 						{
-							plotsH5.setToolTipText("ddd");
+							//plotsH5.setToolTipText("ddd");
 							plotsH5.setBorder(new TitledBorder("Query"));
 
 							//---- label11 ----
@@ -459,7 +450,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH7 ========
 						{
-							plotsH7.setToolTipText("ddd");
+							//plotsH7.setToolTipText("ddd");
 							plotsH7.setBorder(new TitledBorder("Series"));
 
 							//======== scrollPane4 ========
@@ -536,7 +527,7 @@ public class MainForm extends JFrame {
 
 						//======== plotsH8 ========
 						{
-							plotsH8.setToolTipText("ddd");
+							//plotsH8.setToolTipText("ddd");
 							plotsH8.setBorder(new TitledBorder("Query"));
 
 							//---- okButton12 ----
